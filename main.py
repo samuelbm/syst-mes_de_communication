@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Channel: perfect, gaussian noise, linear distorsion, pass band frequency, ISI
+# Demodulation: synchrone perfect, syncrhone with phase shift, synchrone with frequency shift, asynchrone
+# line coding: polar-NRZ, polar-RZ
+# pulse-shaping: sin, rect, sinc, raised-cosine, squared-root-raised-cosine
+
+
 def sinc(start, finish, n, f, h):
     t = np.linspace(start, finish, n+1, True)
     y = np.sinc(2*f*(t-h))
