@@ -34,25 +34,26 @@ def get_pulse_filter(pulse_name, line_code_name, nb_bits_per_symbol):
     else:
         print("pulse name has no match found")
 
-def get_sinc_pulse(Rb, fs, symbol_period):
-    t = np.linspace(-symbol_period, symbol_period, int(symbol_period*fs/Rb))
+def get_sinc_pulse(Rb, fs, symbol_perio=1):
+    t = np.linspace(-symbol_period, symbol_period, int(symbol_period*fs/Rb), False)
     return np.sinc(t)
 
-def get_rect_pulse(Rb, fs, symbol_period):
-    t = np.linspace(-symbol_period, symbol_period, int(symbol_period * fs / Rb))
+def get_rect_pulse(Rb, fs, symbol_period=1):
+    t = np.linspace(-symbol_period, symbol_period, int(symbol_period * fs / Rb), False)
     return np.array([1 if np.abs(tk) <= Rb else 0 for tk in t])
 
-def get_sin_pulse(Rb, fs, symbol_period):
-    t = np.linspace(-symbol_period, symbol_period, int(symbol_period * fs / Rb))
+def get_sin_pulse(Rb, fs, symbol_period=1):
+    t = np.linspace(-symbol_period, symbol_period, int(symbol_period * fs / Rb), False)
     return np.array([np.cos(np.pi*tk/2) if np.abs(tk) <= Rb else 0 for tk in t])
 
-def get_raised_cosine_pulse(Rb, fs, symbol_period):
-    return 1
+# def get_raised_cosine_pulse(Rb, fs, symbol_period):
+#     return 1
+#
+# def get_root_raised_cosine_pulse(Rb, fs, symbol_period):
+#     return 1
 
-def get_root_raised_cosine_pulse(Rb, fs, symbol_period):
-    return 1
-
-plt.plot(get_sinc_pulse(1, 100, 5))
-plt.plot(get_rect_pulse(1,100,5))
-plt.plot(get_sin_pulse(1, 100, 5))
-plt.show()
+if __name__ == "__main__":
+    #plt.plot(get_sinc_pulse(1, 100, 5))
+    #plt.plot(get_rect_pulse(1,100,5))
+    plt.plot(get_sin_pulse(1, 100))
+    plt.show()
